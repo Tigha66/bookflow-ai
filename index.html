@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BookFlow AI - Automated Appointment & Lead Nurturing Bot</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #2563eb;
@@ -15,6 +16,7 @@
             --text-light: #64748b;
             --bg: #f8fafc;
             --white: #ffffff;
+            --orange: #f97316;
         }
         
         * {
@@ -34,6 +36,19 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
+        }
+        
+        /* Urgency Banner */
+        .urgency-banner {
+            background: linear-gradient(90deg, var(--orange), #ea580c);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-weight: 600;
+        }
+        
+        .urgency-banner span {
+            opacity: 0.9;
         }
         
         /* Header */
@@ -114,7 +129,7 @@
         
         /* Hero */
         .hero {
-            padding: 160px 0 100px;
+            padding: 180px 0 100px;
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
             text-align: center;
         }
@@ -144,10 +159,59 @@
             justify-content: center;
         }
         
+        /* Demo Section */
+        .demo-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+        
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .demo-video {
+            background: var(--secondary);
+            border-radius: 16px;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .demo-video::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, rgba(37, 99, 235, 0.2), rgba(16, 185, 129, 0.2));
+        }
+        
+        .play-btn {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: var(--primary);
+            z-index: 1;
+            transition: transform 0.2s;
+        }
+        
+        .demo-video:hover .play-btn {
+            transform: scale(1.1);
+        }
+        
         /* Features */
         .features {
             padding: 100px 0;
-            background: var(--white);
+            background: var(--bg);
         }
         
         .section-header {
@@ -176,18 +240,19 @@
         .feature-card {
             padding: 32px;
             border-radius: 16px;
-            background: var(--bg);
-            transition: transform 0.2s;
+            background: var(--white);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
         
         .feature-card:hover {
             transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
         }
         
         .feature-icon {
             width: 56px;
             height: 56px;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -208,10 +273,26 @@
             font-size: 15px;
         }
         
+        .industry-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        
+        .industry-tag {
+            background: #e0e7ff;
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
         /* How It Works */
         .how-it-works {
             padding: 100px 0;
-            background: var(--bg);
+            background: var(--white);
         }
         
         .steps {
@@ -251,10 +332,52 @@
             color: var(--text-light);
         }
         
+        /* Social Proof */
+        .social-proof {
+            padding: 60px 0;
+            background: var(--secondary);
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .stat h3 {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        
+        .stat p {
+            opacity: 0.8;
+            font-size: 14px;
+        }
+        
+        .trusted-by {
+            margin-top: 40px;
+            opacity: 0.6;
+            font-size: 14px;
+        }
+        
+        .logos-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 16px;
+            font-size: 24px;
+            opacity: 0.5;
+        }
+        
         /* Pricing */
         .pricing {
             padding: 100px 0;
-            background: var(--white);
+            background: var(--bg);
         }
         
         .pricing-grid {
@@ -268,9 +391,10 @@
         .pricing-card {
             padding: 40px 32px;
             border-radius: 16px;
-            background: var(--bg);
+            background: var(--white);
             text-align: center;
             transition: transform 0.2s;
+            position: relative;
         }
         
         .pricing-card:hover {
@@ -280,6 +404,11 @@
         .pricing-card.featured {
             background: var(--secondary);
             color: var(--white);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-4px);
         }
         
         .pricing-card.featured h3,
@@ -289,6 +418,23 @@
         
         .pricing-card.featured p {
             color: rgba(255,255,255,0.7);
+        }
+        
+        .pricing-card.featured .pricing-features li {
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
         }
         
         .pricing-card h3 {
@@ -330,14 +476,10 @@
             gap: 8px;
         }
         
-        .pricing-card.featured .pricing-features li {
-            color: rgba(255,255,255,0.9);
-        }
-        
         /* Testimonials */
         .testimonials {
             padding: 100px 0;
-            background: var(--bg);
+            background: var(--white);
         }
         
         .testimonials-grid {
@@ -348,7 +490,7 @@
         
         .testimonial-card {
             padding: 32px;
-            background: var(--white);
+            background: var(--bg);
             border-radius: 16px;
         }
         
@@ -364,24 +506,112 @@
             color: var(--secondary);
         }
         
-        /* CTA */
-        .cta {
-            padding: 100px 0;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            text-align: center;
-            color: var(--white);
+        .testimonial-role {
+            font-size: 14px;
+            color: var(--text-light);
         }
         
-        .cta h2 {
-            font-size: 40px;
+        /* Contact/Form */
+        .contact {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        }
+        
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 16px;
+            padding: 48px;
+        }
+        
+        .contact h2 {
+            text-align: center;
+            font-size: 32px;
             font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+        
+        .contact-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 32px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--secondary);
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .checkbox-group input {
+            width: auto;
+        }
+        
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .form-success i {
+            font-size: 64px;
+            color: var(--accent);
             margin-bottom: 16px;
         }
         
-        .cta p {
-            font-size: 18px;
-            margin-bottom: 32px;
-            opacity: 0.9;
+        .form-success h3 {
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+        
+        /* Sticky CTA */
+        .sticky-cta {
+            display: none;
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--accent);
+            color: white;
+            padding: 16px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+            z-index: 1000;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .sticky-cta:hover {
+            transform: scale(1.05);
         }
         
         /* Footer */
@@ -412,6 +642,25 @@
             color: var(--white);
         }
         
+        .footer-contact {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-contact p {
+            opacity: 0.6;
+            font-size: 14px;
+        }
+        
+        .footer-contact a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
@@ -420,7 +669,8 @@
             
             .features-grid,
             .pricing-grid,
-            .testimonials-grid {
+            .testimonials-grid,
+            .stats-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -435,10 +685,32 @@
             .hero-btns {
                 flex-direction: column;
             }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+            
+            .pricing-card.featured:hover {
+                transform: translateY(-4px);
+            }
+            
+            .sticky-cta {
+                display: block;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Urgency Banner -->
+    <div class="urgency-banner">
+        <span>🎉 Limited Time: Get 14 days free when you sign up today! Offer ends soon.</span>
+    </div>
+
     <header>
         <div class="container header-content">
             <div class="logo">BookFlow<span>AI</span></div>
@@ -457,8 +729,23 @@
             <h1>Revolutionize Your Appointment<br><span>Scheduling & Lead Generation</span></h1>
             <p>Automate your business's lead qualification, appointment booking, and client follow-ups — so you can focus on what truly matters: growing your business.</p>
             <div class="hero-btns">
-                <a href="#pricing" class="btn btn-primary">Start Free Trial</a>
-                <a href="#how-it-works" class="btn btn-accent">See How It Works</a>
+                <a href="#contact" class="btn btn-primary">Start Free Trial</a>
+                <a href="#demo" class="btn btn-accent">Watch Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section class="demo-section" id="demo">
+        <div class="container">
+            <div class="demo-container">
+                <h2 style="margin-bottom: 16px;">See BookFlow AI in Action</h2>
+                <p style="margin-bottom: 32px; color: var(--text-light);">Watch how our AI automates lead qualification, booking, and follow-ups</p>
+                <div class="demo-video">
+                    <div class="play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -474,32 +761,91 @@
                     <div class="feature-icon">🎯</div>
                     <h3>Lead Qualification</h3>
                     <p>Automatically qualify leads with personalized questions. Filter high-quality prospects based on needs, budget, and urgency.</p>
+                    <div class="industry-tags">
+                        <span class="industry-tag">Lawyers</span>
+                        <span class="industry-tag">Consultants</span>
+                        <span class="industry-tag">Therapists</span>
+                    </div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📅</div>
                     <h3>Real-Time Booking</h3>
                     <p>Offer clients real-time availability. Syncs with your calendar to avoid double bookings automatically.</p>
+                    <div class="industry-tags">
+                        <span class="industry-tag">Dentists</span>
+                        <span class="industry-tag">Gyms</span>
+                        <span class="industry-tag">Salons</span>
+                    </div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔔</div>
                     <h3>Automated Reminders</h3>
                     <p>Send SMS & WhatsApp confirmations and reminders. Reduce no-shows and keep customers on track.</p>
+                    <div class="industry-tags">
+                        <span class="industry-tag">Restaurants</span>
+                        <span class="industry-tag">Hotels</span>
+                        <span class="industry-tag">Medical</span>
+                    </div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📱</div>
                     <h3>Multi-Channel Support</h3>
                     <p>Engage customers on WhatsApp, SMS, or web widget. Meet them where they already are.</p>
+                    <div class="industry-tags">
+                        <span class="industry-tag">Plumbers</span>
+                        <span class="industry-tag">Electricians</span>
+                        <span class="industry-tag">Estate Agents</span>
+                    </div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📊</div>
                     <h3>Analytics & Reporting</h3>
                     <p>Track leads, conversions, and revenue. Make data-driven decisions with detailed insights.</p>
+                    <div class="industry-tags">
+                        <span class="industry-tag">All Industries</span>
+                    </div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔄</div>
                     <h3>Lead Nurturing</h3>
                     <p>Automated follow-ups, drip campaigns, and re-targeting. Keep leads engaged until they're ready.</p>
+                    <div class="industry-tags">
+                        <span class="industry-tag">B2B</span>
+                        <span class="industry-tag">B2C</span>
+                        <span class="industry-tag">Services</span>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat">
+                    <h3>500+</h3>
+                    <p>Businesses</p>
+                </div>
+                <div class="stat">
+                    <h3>50K+</h3>
+                    <p>Appointments Booked</p>
+                </div>
+                <div class="stat">
+                    <h3>60%</h3>
+                    <p>Less No-Shows</p>
+                </div>
+                <div class="stat">
+                    <h3>4.9/5</h3>
+                    <p>Customer Rating</p>
+                </div>
+            </div>
+            <p class="trusted-by">Trusted by businesses across multiple industries</p>
+            <div class="logos-row">
+                <span><i class="fas fa-balance-scale"></i> Law Firms</span>
+                <span><i class="fas fa-user-md"></i> Healthcare</span>
+                <span><i class="fas fa-dumbbell"></i> Fitness</span>
+                <span><i class="fas fa-home"></i> Real Estate</span>
             </div>
         </div>
     </section>
@@ -545,7 +891,7 @@
                 <div class="pricing-card">
                     <h3>Starter</h3>
                     <div class="price">$49<span>/mo</span></div>
-                    <p>Perfect for small businesses</p>
+                    <p>Perfect for small businesses starting to automate</p>
                     <ul class="pricing-features">
                         <li>✓ Up to 100 leads/month</li>
                         <li>✓ Lead Qualification</li>
@@ -554,12 +900,13 @@
                         <li>✓ SMS Reminders</li>
                         <li>✓ Basic Analytics</li>
                     </ul>
-                    <a href="#" class="btn btn-primary" style="width:100%">Start Free Trial</a>
+                    <a href="#contact" class="btn btn-primary" style="width:100%">Start Free Trial</a>
                 </div>
                 <div class="pricing-card featured">
+                    <span class="popular-badge">Most Popular</span>
                     <h3>Professional</h3>
                     <div class="price">$99<span>/mo</span></div>
-                    <p>For growing businesses</p>
+                    <p>For growing businesses ready to scale</p>
                     <ul class="pricing-features">
                         <li>✓ Up to 500 leads/month</li>
                         <li>✓ All Starter features</li>
@@ -568,12 +915,12 @@
                         <li>✓ Lead Nurturing</li>
                         <li>✓ Priority Support</li>
                     </ul>
-                    <a href="#" class="btn btn-accent" style="width:100%">Start Free Trial</a>
+                    <a href="#contact" class="btn btn-accent" style="width:100%">Start Free Trial</a>
                 </div>
                 <div class="pricing-card">
                     <h3>Enterprise</h3>
                     <div class="price">$249<span>/mo</span></div>
-                    <p>For large organizations</p>
+                    <p>For large organizations requiring more</p>
                     <ul class="pricing-features">
                         <li>✓ Unlimited leads</li>
                         <li>✓ All Pro features</li>
@@ -582,7 +929,7 @@
                         <li>✓ SLA Guarantee</li>
                         <li>✓ Custom Reporting</li>
                     </ul>
-                    <a href="#" class="btn btn-primary" style="width:100%">Contact Sales</a>
+                    <a href="#contact" class="btn btn-primary" style="width:100%">Contact Sales</a>
                 </div>
             </div>
         </div>
@@ -597,31 +944,103 @@
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <p>"BookFlow AI transformed our lead generation! We've seen a 25% increase in conversions and no more double-bookings. The automated reminders reduced our no-shows by 60%."</p>
-                    <div class="testimonial-author">— Sarah M., Dental Practice Owner</div>
+                    <div class="testimonial-author">Sarah M.</div>
+                    <div class="testimonial-role">Dental Practice Owner</div>
                 </div>
                 <div class="testimonial-card">
                     <p>"As a consultant, I was spending hours manually booking appointments. This tool has paid for itself in the first month. The lead qualification feature saves me so much time."</p>
-                    <div class="testimonial-author">— James L., Business Consultant</div>
+                    <div class="testimonial-author">James L.</div>
+                    <div class="testimonial-role">Business Consultant</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Our gym went from manual booking chaos to fully automated. Members love the convenience, and we've increased member retention by 30% since implementing BookFlow AI."</p>
+                    <div class="testimonial-author">Mike R.</div>
+                    <div class="testimonial-role">Gym Owner</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"As a therapist, I needed something simple. BookFlow AI handles new client intake, scheduling, and reminders — I focus on treatment, not admin."</p>
+                    <div class="testimonial-author">Dr. Emily K.</div>
+                    <div class="testimonial-role">Licensed Therapist</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="cta" id="contact">
+    <section class="contact" id="contact">
         <div class="container">
-            <h2>Get Started Today</h2>
-            <p>No credit card required. Simple setup in minutes.</p>
-            <a href="#pricing" class="btn" style="background: white; color: var(--primary);">Start Your Free Trial</a>
+            <div class="contact-container">
+                <h2>Get Started Today</h2>
+                <p class="contact-subtitle">No credit card required. Simple setup in minutes.</p>
+                
+                <form id="contactForm" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label>Your Name *</label>
+                        <input type="text" name="name" required placeholder="John Smith">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Business Email *</label>
+                        <input type="email" name="email" required placeholder="john@yourbusiness.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Business Type</label>
+                        <select name="businessType">
+                            <option value="">Select your industry...</option>
+                            <option value="law">Law / Legal Services</option>
+                            <option value="health">Healthcare / Medical</option>
+                            <option value="fitness">Fitness / Gym</option>
+                            <option value="beauty">Beauty / Salon</option>
+                            <option value="realestate">Real Estate</option>
+                            <option value="consulting">Consulting</option>
+                            <option value="restaurant">Restaurant / Hospitality</option>
+                            <option value="home">Home Services</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Plan Preference</label>
+                        <select name="plan">
+                            <option value="starter">Starter - $49/mo</option>
+                            <option value="professional" selected>Professional - $99/mo</option>
+                            <option value="enterprise">Enterprise - $249/mo</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="demo">
+                        <label for="demo" style="margin-bottom: 0;">I'd like a personalized demo</label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 16px;">Start Your Free Trial</button>
+                </form>
+                
+                <div class="form-success" id="formSuccess">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Thank You!</h3>
+                    <p>We'll be in touch within 24 hours to set up your free trial.</p>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- Sticky CTA -->
+    <a href="#contact" class="sticky-cta">Start Free Trial</a>
+
     <footer>
-        <div class="container footer-content">
-            <div class="logo" style="color: white;">BookFlow<span>AI</span></div>
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Contact Us</a>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo" style="color: white;">BookFlow<span>AI</span></div>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#contact">Contact Us</a>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <p>Need help? <a href="mailto:support@bookflow.ai">support@bookflow.ai</a> | +44 7700 900000</p>
+                <p>© 2026 BookFlow AI. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -638,6 +1057,28 @@
                     });
                 }
             });
+        });
+        
+        // Form submission handler
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Hide form, show success
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'block';
+            
+            // Log form data (replace with actual backend integration)
+            const formData = new FormData(event.target);
+            console.log('Form submitted:', Object.fromEntries(formData));
+        }
+        
+        // Show sticky CTA on scroll
+        let stickyCtaShown = false;
+        window.addEventListener('scroll', () => {
+            if (!stickyCtaShown && window.scrollY > 500) {
+                document.querySelector('.sticky-cta').style.display = 'block';
+                stickyCtaShown = true;
+            }
         });
     </script>
 </body>
